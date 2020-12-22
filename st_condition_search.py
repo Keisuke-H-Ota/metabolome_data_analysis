@@ -36,20 +36,16 @@ Normalization_method = st.multiselect('Select normalization method', Normalizati
 
 # 選択しなかった場合は全データを可視化
 
-if not metabolites:
-	metabolites = metabo_list
-else:
-	pass
+def select_all_elements(l,ALL):
+    if not l:
+        l = ALL
+    else:
+        pass
+    return(l)
 
-if not RemoveMissingPercent:
-	RemoveMissingPercent = RemoveMissingPercent_list
-else:
-	pass
-
-if not Normalization_method:
-	Normalization_method = Normalization_method_list
-else:
-	pass
+metabolites = select_all_elements(metabolites,metabo_list)
+RemoveMissingPercent = select_all_elements(RemoveMissingPercent,RemoveMissingPercent_list)
+Normalization_method = select_all_elements(Normalization_method,Normalization_method_list)
 
 df = df[(df['metabolites'].isin(metabolites))&
         (df['RemoveMissingPercent'].isin(RemoveMissingPercent))&
